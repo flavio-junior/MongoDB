@@ -146,3 +146,250 @@ db.crud.deleteMany({h: {$exists: true}})
 db.crud.deleteMany({})
 ```
 
+# Relacionamento One To One
+
+***Embedded documents:***
+```
+{
+    "_id": 1,
+    "cpf": "123456798",
+    "nome": "Joãozinho",
+    "cidade": "São Paulo",
+    "carteirinha": {
+        "_id": 8,
+        "turma": "220A",
+        "ra": 1245
+    }
+}
+```
+> ***No relacionamento um pra um, os dados são incorporados dentro do documento.***
+
+# Relacionamento One To Many
+***Um Para Muitos:***
+```
+{
+    "_id": 3,
+    "meta": 4000,
+    "nome": "Vendas",
+    "funcionarios": [
+        {
+            "_id": 8,
+            "salario": 1400,
+            "turno": "tarde",
+            "cargo": "vendedor"
+        },
+        {
+            "_id": 12,
+            "salario": 1600,
+            "turno": "noite",
+            "cargo": "vendedor"
+        }
+    ]
+}
+```
+
+# Relacionamento Many To Many 
+***Muitos Para Muitos:***
+```
+{
+    "_id": "f04",
+    "cnpj": "165486984",
+    "nome": "Fornecedor Legal",
+    "cep": "1098465",
+    "produto_ids": ["p16", "p21"]
+}
+ 
+{
+    "_id": "f07",
+    "cnpj": "98498151",
+    "nome": "Fornecedor Maneiro",
+    "cep": "198498",
+    "produto_ids": ["p21", "p47"]
+}
+// Collection Produtos
+{
+    "_id": "p16",
+    "descricao": "Panela",
+    "preco": 45.50,
+    "fornecedor_ids": ["f04"]
+}
+ 
+{
+    "_id": "p21",
+    "descricao": "Prato",
+    "preco": 14,
+    "fornecedor_ids": ["f04", "f07"]
+} 
+ 
+{
+    "_id": "p47",
+    "descricao": "Faqueiro",
+    "preco": 127.46,
+    "fornecedor_ids": ["f07"]
+}
+```
+***Muitos Para Muitos | Híbrido de Referência com Embedded:***
+```
+// Collection Fornecedores
+{
+    "_id": "f04",
+    "cnpj": "165486984",
+    "nome": "Fornecedor Legal",
+    "cep": "1098465",
+    "produtos": [
+        {
+            "_id": "p16",
+            "preco": 46.50
+        },
+        {
+            "_id": "p21",
+            "preco": 12
+        }
+    ]
+}
+ 
+{
+    "_id": "f07",
+    "cnpj": "98498151",
+    "nome": "Fornecedor Maneiro",
+    "cep": "198498",
+    "produtos": [
+        {
+            "_id": "p21",
+            "preco": 16
+        },
+        {
+            "_id": "p47",
+            "preco": 127.46
+        }
+    ]
+}
+
+
+// Collection Produtos
+{
+    "_id": "p16",
+    "descricao": "Panela",
+    "fornecedores": [
+        {
+            "_id": "f04",
+            "preco": 46.50
+        }
+    ]
+}
+ 
+{
+    "_id": "p21",
+    "descricao": "Prato",
+    "fornecedores": [
+        {
+            "_id": "f04",
+            "preco": 12
+        },
+        {
+            "_id": "f07",
+            "preco": 16
+        }
+    ]
+} 
+ 
+{
+    "_id": "p47",
+    "descricao": "Faqueiro",
+    "fornecedores": [
+        {
+            "_id": "f07",
+            "preco": 127.46
+        }
+    ]
+}
+```
+
+***Duplicar ou não duplicar? Segredos e vantagens desse modelo:***
+```
+// Collection Fornecedores
+{
+    "_id": "f04",
+    "cnpj": "165486984",
+    "nome": "Fornecedor Legal",
+    "cep": "1098465",
+    "produtos": [
+        {
+            "_id": "p16",
+            "descricao": "Panela",
+            "preco": 46.50
+        },
+        {
+            "_id": "p21",
+            "descricao": "Prato",
+            "preco": 12
+        }
+    ]
+}
+ 
+{
+    "_id": "f07",
+    "cnpj": "98498151",
+    "nome": "Fornecedor Maneiro",
+    "cep": "198498",
+    "produtos": [
+        {
+            "_id": "p21",
+            "descricao": "Prato",
+            "preco": 16
+        },
+        {
+            "_id": "p47",
+            "descricao": "Faqueiro",
+            "preco": 127.46
+        }
+    ]
+}
+// Collection Produtos
+{
+    "_id": "p16",
+    "descricao": "Panela",
+    "fornecedores": [
+        {
+            "_id": "f04",
+            "preco": 46.50,
+            "cep": "1098465"
+        }
+    ],
+    "peso": 4,
+    "unidade_peso": "kg",
+    "altura": 14,
+    "largura": 15,
+    "profundidade": 20
+}
+ 
+{
+    "_id": "p21",
+    "descricao": "Prato",
+    "fornecedores": [
+        {
+            "_id": "f04",
+            "preco": 12,
+            "cep": "1098465"
+        },
+        {
+            "_id": "f07",
+            "preco": 16,
+            "cep": "198498",
+        }
+    ]
+} 
+ 
+{
+    "_id": "p47",
+    "descricao": "Faqueiro",
+    "fornecedores": [
+        {
+            "_id": "f07",
+            "preco": 127.46,
+            "cep": "198498",
+        }
+    ]
+}
+```
+
