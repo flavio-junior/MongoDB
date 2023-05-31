@@ -394,3 +394,54 @@ db.crud.deleteMany({})
 ```
 
 # Schema e Validation
+
+***Apagar coleção:***
+```
+ db.cars.drop()
+```
+
+***Listar Coleções por nome:***
+```
+db.getCollectionNames()
+```
+
+***Criar coleção com validação:***
+```
+db.createCollection("cars", {
+	validator: {
+  		$jsonSchema: {
+   			bsonType: "object",
+			required: ["model", "year"],
+			properties: {
+				model: {
+					bsonType: "string",
+					description: "O Modelo é necessário e deve ser uma string"
+				},
+				madeBy: {				
+					bsonType: "string",
+					description: "O Modelo é necessário e deve ser uma string",
+					minLength: 3
+				},
+				year: {
+					bsonType: "int",
+					description: "O Modelo é necessário e deve ser um inteiro",
+					minimum: 1980,
+					maximum: 2025
+				}
+			}
+  		} 
+	}
+})
+```
+
+> O validator cria validações para os atributos do MongoDB! Diferente de bancos de dados relacionais, o MongoDB, aceita diferentes valores em um mesmo campo, onde isso pode gerar um problema. Para resolver o problema é necessário, criar validações manualmente e informar qual é o valor do campo.
+
+***Capped Collections | Funciona como uma fila:***
+```
+db.createCollection("logs", {
+    capped: true,
+    size: 2048,
+    max: 5
+})
+```
+
