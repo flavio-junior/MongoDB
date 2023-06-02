@@ -445,3 +445,24 @@ db.createCollection("logs", {
 })
 ```
 
+# Queries
+
+***Buscando documento com dados especificos:***
+```
+ db.pokemon.find({ "legendary": true })
+```
+
+***Buscando documento com filtros e com a quantidade de items da coleção:***
+```
+ db.pokemon.find({ "legendary": true }).count()
+```
+
+***Buscar valores distintos:***
+```
+db.pokemon.distinct("generation")
+```
+
+***Regex:***
+```
+db.pokemon.find({ name: /Pik/ })
+```
