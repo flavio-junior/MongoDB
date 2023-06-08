@@ -477,3 +477,8 @@ db.pokemon.find({ name: /^Pik/ })
 db.pokemon.find({ name: /^Pik/ }, {name: true })
 ```
 
+***Buscando por letras  minúsculas:***
+```
+db.pokemon.find({ name: /^pik/i }, {name: true })
+```
+
