@@ -472,3 +472,8 @@ db.pokemon.find({ name: /Pik/ })
 db.pokemon.find({ name: /^Pik/ })
 ```
 
+***Retornando apenas campos específicos da coleção com o projection:***
+```
+db.pokemon.find({ name: /^Pik/ }, {name: true })
+```
+
