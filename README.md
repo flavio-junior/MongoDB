@@ -462,7 +462,13 @@ db.createCollection("logs", {
 db.pokemon.distinct("generation")
 ```
 
-***Regex:***
+***Buscando nome com Regex:***
 ```
 db.pokemon.find({ name: /Pik/ })
 ```
+
+***Buscar por nomes que começam com letras especificadas na query:***
+```
+db.pokemon.find({ name: /^Pik/ })
+```
+
