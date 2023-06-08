@@ -482,3 +482,38 @@ db.pokemon.find({ name: /^Pik/ }, {name: true })
 db.pokemon.find({ name: /^pik/i }, {name: true })
 ```
 
+***Buscando valores que são iguais a um valor especificado default:***
+```
+db.pokemon.find({ attack: 85 }, {attack: true })
+```
+
+***Buscando valores que são iguais a um valor especificado:***
+```
+ db.pokemon.find({ attack: { $eq: 85 }  }, {attack: true })
+```
+
+***Buscando valores maiores que um valor especificado:***
+```
+pokemon_center> db.pokemon.find({ attack: { $gt: 85 }  }, {attack: true })
+```
+
+***Buscando valores maiores ou iguais a um valor especificado:***
+```
+db.pokemon.find({ attack: { $gte: 85 }  }, {attack: true })
+```
+
+***Buscando valores que são menores que um valor especificado:***
+```
+ db.pokemon.find({ attack: { $lt: 85 }  }, {attack: true })
+```
+
+***Buscando valores menores ou iguais a um valor especificado:***
+```
+db.pokemon.find({ attack: { $lte: 85 }  }, {attack: true })
+```
+
+***Buscando a todos os valores que não são iguais a um valor especificado:***
+```
+db.pokemon.find({ attack: { $ne: 85 }  }, {attack: true })
+```
+
