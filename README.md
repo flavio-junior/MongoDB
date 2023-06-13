@@ -535,3 +535,51 @@ db.pokemon.find({ types: { $nin: ["Fire", "Rock"] } }, {name: true, types: true}
 ```
 db.pokemon.find({ name: { $in: ["Pichu", "Pikachu"] } })
 ```
+
+# Combinando operadores
+
+***Combinando operadores:***
+```
+db.pokemon.find({ defense: { $gt: 60, $lte: 72 }}, {name: true, defense: true})
+```
+
+***Mesclando queries com operadores logicos $or:***
+```
+db.pokemon.find(
+ {
+   $or: [
+     {
+       defense: {
+	$gte: 60,
+	$lte: 72
+       },
+     },
+     {
+       defense: 100
+     },
+   ],
+ },
+ { name: true, defense: true }
+)
+```
+
+***Filtrando mais de um campo com o $or***:
+```
+db.pokemon.find(
+ {
+   $or: [
+     {
+       defense: {
+	$gte: 80
+       },
+     },
+     {
+       attack: {
+        $gte: 80
+       }
+     },
+   ],
+ },
+ { name: true, defense: true, attack: true }
+)
+```
