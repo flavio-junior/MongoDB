@@ -583,3 +583,30 @@ db.pokemon.find(
  { name: true, defense: true, attack: true }
 )
 ```
+
+***Encontrando pokemons fortes OU com muita defesa***:
+```
+db.pokemon.find(
+ {
+   $or: [
+     {
+       defense: {
+	$gte: 80
+       },
+       hp: {
+        $gte: 80
+       }
+     },
+     {
+       attack: {
+        $gte: 80
+       },
+       speed: {
+        $gte: 80
+       }
+     },
+   ],
+ },
+ { name: true, defense: true, attack: true, speed: true }
+)
+```
