@@ -517,3 +517,21 @@ db.pokemon.find({ attack: { $lte: 85 }  }, {attack: true })
 db.pokemon.find({ attack: { $ne: 85 }  }, {attack: true })
 ```
 
+***Buscando strings dentro de arrays:***
+```
+db.pokemon.find({ types: "Fire" }, {name: true, types: true})
+```
+
+***Filtrando por dados específicos dentro de um array:***
+```
+db.pokemon.find({ types: { $in: ["Fire", "Rock"] } }, {name: true, types: true})
+```
+
+***Filtrando por dados distintos do dados Especificados dentro de um array:***
+```
+db.pokemon.find({ types: { $nin: ["Fire", "Rock"] } }, {name: true, types: true})
+```
+***Filtrando por dados na coleção:***
+```
+db.pokemon.find({ name: { $in: ["Pichu", "Pikachu"] } })
+```
