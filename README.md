@@ -610,3 +610,92 @@ db.pokemon.find(
  { name: true, defense: true, attack: true, speed: true }
 )
 ```
+
+***Ordenar dados de ordem crescente utilizando o sort:***
+```
+db.pokemon.find(
+ {
+   $or: [
+     {
+       defense: {
+	$gte: 80
+       },
+       hp: {
+        $gte: 80
+       }
+     },
+     {
+       attack: {
+        $gte: 80
+       },
+       speed: {
+        $gte: 80
+       }
+     },
+   ],
+ },
+ { hp: true }
+).sort({
+   hp: 1
+})
+```
+
+***Ordenar dados de ordem decrescente utilizando o sort:***
+```
+db.pokemon.find(
+ {
+   $or: [
+     {
+       defense: {
+	$gte: 80
+       },
+       hp: {
+        $gte: 80
+       }
+     },
+     {
+       attack: {
+        $gte: 80
+       },
+       speed: {
+        $gte: 80
+       }
+     },
+   ],
+ },
+ { hp: true }
+).sort({
+   hp: -1
+})
+```
+
+***Ordenar dados de ordem decrescente com combinação de valores no sort:***
+```
+db.pokemon.find(
+ {
+   $or: [
+     {
+       defense: {
+	$gte: 80
+       },
+       hp: {
+        $gte: 80
+       }
+     },
+     {
+       attack: {
+        $gte: 80
+       },
+       speed: {
+        $gte: 80
+       }
+     },
+   ],
+ },
+ { hp: true }
+).sort({
+   {  hp: 1, defense: -1 }
+})
+```
+
+
