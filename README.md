@@ -732,3 +732,15 @@ db.pokemon.find({ types: "Fire" }).sort({ attack: -1}).skip(5).limit(6)
 db.pokemon.find({ "battle_points.hp": { $lte: 40 } })
 ```
 
+# Updates
+
+***Adicionar novo campo dentro da coleção utilizando o  $set:***
+```
+db.pokemon.updateOne({ name: /^O/ }, { $set: { startsWithO: true }})
+```
+
+***Adicionar novo campo dentro das coleções que Condizem com as estruções da query informada usando o $set:***
+```
+db.pokemon.updateMany({ name: /^O/ }, { $set: { startsWithO: true }})
+```
+
