@@ -744,3 +744,21 @@ db.pokemon.updateOne({ name: /^O/ }, { $set: { startsWithO: true }})
 db.pokemon.updateMany({ name: /^O/ }, { $set: { startsWithO: true }})
 ```
 
+***Apagar campo da coleção com UpdateOne:***
+```
+db.pokemon.updateOne({ name: /^O/ }, { $unset: { startsWithO: true }})
+```
+
+***Apagar campo da coleção com UpdateMany:***
+```
+db.pokemon.updateMany({ name: /^O/ }, { $unset: { startsWithO: true }})
+```
+
+***Atualizar valor do campo:***
+```
+ db.pokemon.updateMany({ name: /^O/ }, { $unset: { name: "Começa com O" }})
+```
+
+> Nesse cenário pode ser utilizado tanto updateMany, quanto o updateOne
+
+
