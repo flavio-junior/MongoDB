@@ -761,4 +761,19 @@ db.pokemon.updateMany({ name: /^O/ }, { $unset: { startsWithO: true }})
 
 > Nesse cenário pode ser utilizado tanto updateMany, quanto o updateOne
 
+***Incrementando valores com $inc:***
+```
+db.pokemon.updateMany({ types: "Fire" }, { $inc: { attack: 10 } })
+```
 
+***Decrementando valores com $inc:***
+```
+db.pokemon.updateMany({ types: "Fire" }, { $inc: { attack: -10 } })
+```
+
+> Usar o sinal de menos para descrementar valores
+
+***Multiplicar valores com mul:***
+````
+ db.pokemon.updateMany({ types: "Fire" }, { $mul: { attack: 10 } })
+```
