@@ -707,6 +707,17 @@ db.pokemon.find({ types: { $size: 2 } }, { _id: false, name: true, types: true})
 
 ***Retornando dados com All caso as duas condições do filtro sejam verdadeiras:***
 ```
- db.pokemon.find({ types: { $all: ["Rock", "Flying"] } }, { _id: false, name: true, types: true})
+db.pokemon.find({ types: { $all: ["Rock", "Flying"] } }, { _id: false, name: true, types: true})
 ```
 
+***Utilizando páginação com o limit:***
+```
+db.pokemon.find({ types: "Fire" }).sort({ attack: -1}).limit(5)
+```
+
+***Trocando de página através do skip:***
+```
+db.pokemon.find({ types: "Fire" }).sort({ attack: -1}).skip(5).limit(6)
+```
+
+> Para pular de uma página para outra é necessário pular a quantidade items referentes ao limit em questão.
