@@ -721,3 +721,14 @@ db.pokemon.find({ types: "Fire" }).sort({ attack: -1}).skip(5).limit(6)
 ```
 
 > Para pular de uma página para outra é necessário pular a quantidade items referentes ao limit em questão.
+
+***Verificar se um campo existe dentro da coleção:***
+```
+ db.pokemon.find({ battle_points: { $exists: true } })
+```
+
+***Filtrando em embeded documents com o dot notation:***
+```
+db.pokemon.find({ "battle_points.hp": { $lte: 40 } })
+```
+
