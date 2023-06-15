@@ -698,4 +698,15 @@ db.pokemon.find(
 })
 ```
 
+***Retornando dados com Size caso a condição estabelecidade retorne os dados informados:***
+```
+db.pokemon.find({ types: { $size: 2 } }, { _id: false, name: true, types: true})
+```
+
+> Os dados informados no Size, também pode ser em formatado de String.
+
+***Retornando dados com All caso as duas condições do filtro sejam verdadeiras:***
+```
+ db.pokemon.find({ types: { $all: ["Rock", "Flying"] } }, { _id: false, name: true, types: true})
+```
 
