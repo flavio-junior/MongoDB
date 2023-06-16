@@ -910,3 +910,65 @@ db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: [], $sort: 1 }}})
 
 > Para decrementar os elementos, basta colocar o mesmo - ao lado do valor 1!
 
+***Exibir uma quantidade especifica de elementos com slice dentro do array:***
+```
+db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: [], $slice: 5 }}})
+```
+
+> Irá exibir apenas os 5 primeiros items da lista e irá remover o restante.
+
+***Exibir uma quantidade especifica de elementos com slice dentro do array com os últimos items da lista:***
+```
+db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: [], $slice: -2 }}})
+```
+
+> Irá exibir apenas os dois 2 últimos items da lista e irá remover o restante ao utilizar o sinhal de menos.
+
+***Apagando último item da lista:***
+```
+db.pokemon.updateOne(
+ { _id: 1 },
+ { 
+   $pop: {
+    types: 1
+   }
+ }
+)
+```
+
+***Apagando primeiro item da lista:***
+```
+db.pokemon.updateOne(
+ { _id: 1 },
+ { 
+   $pop: {
+    types: -1
+   }
+ }
+)
+```
+
+***Apagando elemento da lista:***
+```
+db.pokemon.updateOne(
+ { _id: 1 },
+ { 
+   $pull: {
+    types: "Hotdog"
+   }
+ }
+)
+```
+***Atualizando vários elementos dentro do array:***
+```
+db.pokemon.updateOne(
+ { _id: 1 },
+ { 
+   $pull: {
+    types: {
+      $in: ["Hamburguer", "Sorvete"]
+    }
+   }
+ }
+)
+```
