@@ -867,4 +867,8 @@ db.pokemon.updateOne({ _id: 1, types: "Poison"}, { $set: { "types.$": "Lasanha" 
 db.pokemon.updateOne({ _id: 1}, { $set: { "types.$[]": "Pizza" }})
 ```
 
+***Adicionar novo elemento dentro do array:***
+```
+db.pokemon.updateOne({ _id: 1}, { $push: { types: "Lazanha" }})
+```
 
