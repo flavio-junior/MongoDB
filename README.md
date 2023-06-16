@@ -1030,3 +1030,50 @@ db.pokemon.updateOne(
 )
 ```
 > Para listar de ordem descrente é só trocar o 1 para o -1!
+
+***Atualizar coleção com findOneAndUpdate e exibir dados antigos:***
+```
+pokemon_center> db.pokemon.findOneAndUpdate(
+  { _id: 256 },
+  {
+    $set: {
+     using_find_one_and_update: true
+    }
+  }
+)
+```
+
+***Atualizar coleção com findOneAndUpdate e exibir os dados criados:***
+```
+db.pokemon.findOneAndUpdate(
+ { _id: 257 },
+ {
+   $set: {
+    using_find_one_and_update: true
+   }
+ },
+ {
+   returnNewDocument: true
+ }
+)
+```
+
+***Atualizar coleção com findAndModify e exibir os dados criados:***
+```
+db.pokemon.findAndModify({
+ query: { _id: 258 },
+ update: { $set: { using_find_one_and_update: true } },
+  new: true
+ }
+)
+```
+
+***Apagar registro com findAndModify:***
+```
+db.pokemon.findAndModify({
+ query: { _id: 259 },
+  remove: true
+ }
+)
+```
+
