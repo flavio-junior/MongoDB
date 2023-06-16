@@ -876,3 +876,11 @@ db.pokemon.updateOne({ _id: 1}, { $push: { types: "Lazanha" }})
 ```
 db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: ['Hotdog', 'Hamburguer', 'Sorvete'] } }})
 ```
+
+***Adicionar elemento em uma ordem Específica do array:***
+```
+db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: ['Esfirra'], $position: 2 } }})
+```
+
+> Informar a posição do elemento comforme a quantidade de elementos que a lista tem!
+
