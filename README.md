@@ -855,3 +855,16 @@ db.pokemon.updateOne(
 )
 ```
 
+# Update de Arrays
+
+***Atualizando elementos dentro de arrays:***
+```
+db.pokemon.updateOne({ _id: 1, types: "Poison"}, { $set: { "types.$": "Lasanha" }})
+```
+
+***Atualizar todos os elementos dentro do array:***
+```
+db.pokemon.updateOne({ _id: 1}, { $set: { "types.$[]": "Pizza" }})
+```
+
+
