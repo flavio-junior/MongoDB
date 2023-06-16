@@ -830,3 +830,12 @@ db.pokemon.updateMany(
 ```
 
 > Também é possivel utilizar dentro do type o date porém o resultado dele é o mesmo do script anterior usando o Date!
+
+***Inserir novo campo, caso não exista no coleção usando o Upsert:***
+```
+db.pokemon.updateOne({ name: "Renan Pallin" }, { $set: { attack: 450 }}, { upsert: true })
+```
+
+> Caso não seja encontrado um objeto com o nome informado, é criado um novo objeto com esse nome e com o outro campo informado!
+
+
