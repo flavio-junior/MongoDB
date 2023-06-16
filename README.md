@@ -884,3 +884,29 @@ db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: ['Esfirra'], $positio
 
 > Informar a posição do elemento comforme a quantidade de elementos que a lista tem!
 
+***Prevenindo inserções duplicadas em arrays com oaddToSet:***
+
+```
+db.pokemon.updateOne({ _id: 1}, { $addToSet: { types: "Hamburger" } }})
+```
+
+> Também pode ser utilizado com o each
+
+***Adicionar elementos dentro do array de forma Alfabética crescente:***
+```
+db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: ["Batata Frita"], $sort: 1 }}})
+```
+
+
+***Adicionar elementos dentro do array de forma Alfabética decrescente:***
+```
+db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: ["Batata Frita"], $sort: -1 }}})
+```
+
+***Organizar os dados de forma crescente dentro da lista:***
+```
+db.pokemon.updateOne({ _id: 1}, { $push: { types: { $each: [], $sort: 1 }}})
+```
+
+> Para decrementar os elementos, basta colocar o mesmo - ao lado do valor 1!
+
