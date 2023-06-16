@@ -838,4 +838,20 @@ db.pokemon.updateOne({ name: "Renan Pallin" }, { $set: { attack: 450 }}, { upser
 
 > Caso não seja encontrado um objeto com o nome informado, é criado um novo objeto com esse nome e com o outro campo informado!
 
+***Inserir nova coleção, caso não exista o campo informado com o setOnInsert:***
+```
+db.pokemon.updateOne(
+ { name: "Renan Pallin Dois" },
+ { $set: {
+     attack: 450
+    },
+   $setOnInsert: {
+    defense: 35,
+    hp: 800,
+    speed: 85
+   }
+ }, 
+ { upsert: true }
+)
+```
 
