@@ -972,3 +972,61 @@ db.pokemon.updateOne(
  }
 )
 ```
+
+***Removendo vários elementos da lista:***
+```
+db.pokemon.updateOne(
+ { _id: 1 },
+ { 
+   $pullAll: {
+    types:  ["Hotdog", "Bulbassaur"]
+   }
+ }
+)
+```
+
+***Modificar a lista, adicionando vários campos nela:***
+```
+db.pokemon.updateOne(
+    { _id: 1 },
+    { 
+        $set: {
+            types: [
+                { name: "Fire", bonus_points: 45, weakness: "Water" },
+                { name: "Rock", bonus_points: 12, weakness: "Paper" },
+                { name: "Bug", bonus_points: 14, weakness: "Chinelão" }
+            ],
+        }
+    }
+)
+```
+
+***Atualizar registro dentro de um array que contenha vários campos em cada elemento:***
+```
+db.pokemon.updateOne(
+ { _id: 1, "types.name": "Fire" },
+ { 
+   $set: {
+     "types.$.bonus_points": 18
+   }
+ }
+)
+```
+
+***Ordenando o array de documentos de ordem crescente:***
+```
+db.pokemon.updateOne(
+ { _id: 1 },
+ { 
+   $push: {
+     types: {
+       $each: [],
+       $sort: {
+	  bonus_points: 1
+        }
+      }
+   }
+ }
+)
+```
+> Para listar de ordem descrente é só trocar o 1 para o -1!
