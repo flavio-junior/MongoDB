@@ -1077,3 +1077,5 @@ db.pokemon.findAndModify({
 )
 ```
 
+# Indexes
+
