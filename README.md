@@ -774,6 +774,22 @@ db.pokemon.updateMany({ types: "Fire" }, { $inc: { attack: -10 } })
 > Usar o sinal de menos para descrementar valores
 
 ***Multiplicar valores com mul:***
-````
+```
  db.pokemon.updateMany({ types: "Fire" }, { $mul: { attack: 10 } })
 ```
+
+***Adicionar valores máximos acima de um número Especifico utilizando o min:***
+```
+db.pokemon.updateMany({ types: "Fire" }, { $min: {attack: 150 }})
+```
+
+> Essa atualização será compatível com objetos maiores que 150
+
+***Adicionar valor mínimos em determinado campo utilizando o max:***
+```
+ db.pokemon.updateMany({}, { $max: {attack: 75 }})
+```
+
+> É possível atualizar todos os objetos de um campo utilizando o <> e especificando o campo que você deseja atualizar!
+> Essa atualização será compatível com objetos menores que 75
+
