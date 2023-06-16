@@ -793,3 +793,40 @@ db.pokemon.updateMany({ types: "Fire" }, { $min: {attack: 150 }})
 > É possível atualizar todos os objetos de um campo utilizando o <> e especificando o campo que você deseja atualizar!
 > Essa atualização será compatível com objetos menores que 75
 
+***Atualizar dados com Date:***
+```
+db.pokemon.updateMany(
+	{
+		types: "Bug"
+	},
+	{
+ 		$set: {
+ 			name: "É do tipo Bug" 
+		},
+		$currentDate: {
+			updateAt: true
+		}
+	}
+)
+```
+
+***Atualizar dados com Timestamp:***
+```
+db.pokemon.updateMany(
+	{
+		types: "Bug"
+	},
+	{
+ 		$set: {
+ 			name: "É do tipo Bug" 
+		},
+		$currentDate: {
+			updateAt: {
+				$type: "timestamp"
+			}
+		}
+	}
+)
+```
+
+> Também é possivel utilizar dentro do type o date porém o resultado dele é o mesmo do script anterior usando o Date!
