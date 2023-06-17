@@ -1079,3 +1079,36 @@ db.pokemon.findAndModify({
 
 # Indexes
 
+***Listar Índices  da coleção?***
+```
+db.pokemon.getIndexes()
+```
+
+***Criando Index:***
+```
+db.pokemon.createIndex({ name: 1 })
+```
+
+***Retornar informações da query executada:***
+```
+db.pokemon.find({ name: "Umbreon" }).explain('executionStats')
+```
+
+> O executionStats retorna detalhes do plano selecionado para fazer a consulta e a lista os planos rejeitados.
+
+***Definindo nome para o Index:***
+```
+db.pokemon.createIndex({ attack: 1 }, { name: "index_attack_2" })
+```
+
+***Criando Índices compostos:***
+```
+ db.pokemon.createIndex({attack: 1, name: 1})
+```
+
+***Excluído índices:***
+```
+db.pokemon.dropIndex("index_hp_test")
+```
+
+
